@@ -1,0 +1,16 @@
+.orange {
+
+  color: #E65540;
+  font-weight: bolder;
+  letter-spacing: 1px;
+}
+
+.register {
+  background-color: #E65540;
+  color: white;
+
+  &:hover {
+    background-color: #E65540;
+    color: white;
+  }
+}

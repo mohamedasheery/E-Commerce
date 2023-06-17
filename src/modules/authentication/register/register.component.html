@@ -1,0 +1,175 @@
+<section class="w-100 vh-100">
+  <div class="container-fluid container-sm">
+    <div class="row vh-100 justify-content-center align-items-center">
+      <div class="card col-12 col-md-8 col-lg-6 py-5 text-center">
+        <div class="py-2">
+          <h1 class="fw-bold py-4">
+            Modern <span class="orange">Fashion</span>
+          </h1>
+          <h1>Register</h1>
+          <p class="alert alert-danger" *ngIf="error">{{ error }}</p>
+        </div>
+        <div class="py-5 d-flex justify-content-center align-items-center">
+          <form
+            class="col-md-7 m-auto"
+            #userInfo="ngForm"
+            novalidate
+            (ngSubmit)="saveData()"
+          >
+            <div class="form-group">
+              <label for="">First Name :</label>
+              <input
+                required
+                pattern="^[a-zA-Z]{3,}$"
+                [class.is-invalid]="firstName.touched && firstName.invalid"
+                [(ngModel)]="user.first_name"
+                class="form-control"
+                type="text"
+                name="firstName"
+                #firstName="ngModel"
+              />
+              <div *ngIf="firstName.errors && firstName.touched">
+                <p
+                  class="text-danger p-2 my-1"
+                  *ngIf="firstName.errors?.['required']"
+                >
+                  First Name is required
+                </p>
+                <p
+                  class="text-danger p-2 my-1"
+                  *ngIf="firstName.errors?.['pattern']"
+                >
+                  First Name is must have 3 characters or more
+                </p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="">Last Name :</label>
+              <input
+                required
+                pattern="^[a-zA-Z]{3,}$"
+                [class.is-invalid]="lastName.touched && lastName.invalid"
+                [(ngModel)]="user.last_name"
+                class="form-control"
+                type="text"
+                name="lastName"
+                #lastName="ngModel"
+              />
+              <div *ngIf="lastName.errors && lastName.touched">
+                <p
+                  class="text-danger p-2 my-1"
+                  *ngIf="lastName.errors?.['required']"
+                >
+                  last Name is required
+                </p>
+                <p
+                  class="text-danger p-2 my-1"
+                  *ngIf="lastName.errors?.['pattern']"
+                >
+                  last Name is must have 3 char or more
+                </p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="">Email :</label>
+              <input
+                required
+                pattern="^([a-zA-Z0-9._%+-]+)@([a-z0-9.-]+)\.(com|eg)$"
+                [class.is-invalid]="Email.touched && Email.invalid"
+                [(ngModel)]="user.email"
+                class="form-control"
+                type="email"
+                name="Email"
+                #Email="ngModel"
+              />
+              <div *ngIf="Email.errors && Email.touched">
+                <p
+                  class="text-danger p-2 my-1"
+                  *ngIf="Email.errors?.['required']"
+                >
+                  Email is required
+                </p>
+                <p
+                  class="text-danger p-2 my-1"
+                  *ngIf="Email.errors?.['pattern']"
+                >
+                  Email is must have "example@gmail.com"
+                </p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="">Password :</label>
+              <input
+                required
+                pattern="^[a-zA-Z0-9]{6,}$"
+                [class.is-invalid]="password.touched && password.invalid"
+                [(ngModel)]="user.password"
+                class="form-control"
+                type="password"
+                name="password"
+                #password="ngModel"
+              />
+              <div *ngIf="password.errors && password.touched">
+                <p
+                  class="text-danger p-2 my-1"
+                  *ngIf="password.errors?.['required']"
+                >
+                  password is required
+                </p>
+                <p
+                  class="text-danger p-2 my-1"
+                  *ngIf="password.errors?.['pattern']"
+                >
+                  password is must have 6 digits or more
+                </p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="">Age :</label>
+              <input
+                required
+                pattern="^[0-9]{1,3}$"
+                [class.is-invalid]="age.touched && age.invalid"
+                [(ngModel)]="user.age"
+                class="form-control"
+                type="number"
+                name="age"
+                #age="ngModel"
+              />
+              <div *ngIf="age.errors && age.touched">
+                <p
+                  class="text-danger p-2 my-1"
+                  *ngIf="age.errors?.['required']"
+                >
+                  Age is required
+                </p>
+                <p class="text-danger p-2 my-1" *ngIf="age.errors?.['pattern']">
+                  Age must not more 999 XD
+                </p>
+              </div>
+            </div>
+
+            <input
+              [disabled]="userInfo.form.invalid"
+              [ngClass]="{
+                my_class: userInfo.form.invalid,
+                my_class2: userInfo.form.valid
+              }"
+              class="btn register my-3 w-100"
+              value="Register"
+              type="submit"
+            />
+            <p class="text-secondary fst-italic fw-bold">
+              Already A User?
+              <a
+                class="text-decoration-none orange"
+                routerLink="/authentication/login"
+                >Login Now!!</a
+              >
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

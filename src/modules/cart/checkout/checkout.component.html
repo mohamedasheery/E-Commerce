@@ -1,0 +1,267 @@
+<header>
+  <app-navbar></app-navbar>
+</header>
+
+<main class="container">
+  <div class="py-5 text-center">
+    <h2>Checkout form</h2>
+  </div>
+
+  <div class="row g-5 d-flex justify-content-center">
+    <div class="col-md-7 col-lg-8">
+      <h4 class="mb-3">Billing address</h4>
+
+      <form [formGroup]="checkoutForm">
+        <div class="row g-3">
+          <div class="col-sm-6 form-group">
+            <label for="firstName" class="form-label">First name</label>
+
+            <input
+              [class.is-invalid]="firstName?.invalid && firstName?.touched"
+              type="text"
+              name="firstName"
+              formControlName="firstName"
+              class="form-control"
+            />
+
+            <div *ngIf="firstName?.invalid && firstName?.touched">
+              <small
+                class="text-danger"
+                *ngIf="firstName?.errors?.['required']"
+              >
+                firstName is required</small
+              >
+              <small class="text-danger" *ngIf="firstName?.errors?.['pattern']">
+                firstName is length min 3 character</small
+              >
+            </div>
+          </div>
+
+          <div class="col-sm-6">
+            <label for="lastName" class="form-label">Last name</label>
+            <input
+              [class.is-invalid]="lastName?.invalid && lastName?.touched"
+              type="text"
+              name="lastName"
+              formControlName="lastName"
+              class="form-control"
+            />
+            <div *ngIf="lastName?.invalid && lastName?.touched">
+              <small class="text-danger" *ngIf="lastName?.errors?.['required']">
+                lastName is required</small
+              >
+              <small class="text-danger" *ngIf="lastName?.errors?.['pattern']">
+                lastName is length min 3 character</small
+              >
+            </div>
+          </div>
+
+          <div class="col-12">
+            <label for="email" class="form-label">Email</label>
+            <input
+              [class.is-invalid]="email?.invalid && email?.touched"
+              type="email"
+              name="email"
+              formControlName="email"
+              class="form-control"
+            />
+            <div *ngIf="email?.invalid && email?.touched" class="text-danger">
+              <small class="text-danger" *ngIf="email?.errors?.['required']">
+                email is required</small
+              >
+              <small class="text-danger" *ngIf="email?.errors?.['pattern']">
+                email: you@example.com|eg"
+              </small>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <label for="address" class="form-label">Address</label>
+            <input
+              [class.is-invalid]="address?.invalid && address?.touched"
+              type="text"
+              class="form-control"
+              formControlName="address"
+              placeholder="1234 Main St"
+            />
+            <div
+              *ngIf="address?.invalid && address?.touched"
+              class="invalid-feedback"
+            >
+              Please enter your shipping address.
+            </div>
+          </div>
+
+          <div class="col-md-5">
+            <label for="country" class="form-label">Country</label>
+            <select
+              [class.is-invalid]="ddlCountry?.invalid && ddlCountry?.touched"
+              formControlName="ddlCountry"
+              class="form-select"
+              name="ddlCountry"
+            >
+              <option value="">Choose...</option>
+              <option>Egypt</option>
+            </select>
+            <small *ngIf="ddlCountry?.invalid && ddlCountry?.touched"
+              >please select country</small
+            >
+          </div>
+
+          <div class="col-md-4">
+            <label for="state" class="form-label">State</label>
+            <select
+              [class.is-invalid]="ddlState?.invalid && ddlState?.touched"
+              formControlName="ddlState"
+              class="form-select"
+              name="ddlState"
+            >
+              <option value="">Choose...</option>
+              <option>6th october</option>
+              <option>Assiut</option>
+            </select>
+            <small *ngIf="ddlState?.invalid && ddlState?.touched"
+              >please select state</small
+            >
+          </div>
+        </div>
+        <hr class="my-4" />
+
+        <!-- ============================================================================================= -->
+
+        <h4 class="mb-3">Payment</h4>
+
+        <div class="my-3">
+          <div class="form-check">
+            <input
+              id="credit"
+              name="paymentMethod"
+              type="radio"
+              class="form-check-input"
+              checked
+              required
+            />
+            <label class="form-check-label" for="credit">Credit card</label>
+          </div>
+
+          <div class="form-check">
+            <input
+              id="debit"
+              name="paymentMethod"
+              type="radio"
+              class="form-check-input"
+              required
+            />
+            <label class="form-check-label" for="debit">Debit card</label>
+          </div>
+          <div class="form-check">
+            <input
+              id="paypal"
+              name="paymentMethod"
+              type="radio"
+              class="form-check-input"
+              required
+            />
+            <label class="form-check-label" for="paypal">PayPal</label>
+          </div>
+        </div>
+
+        <div class="row gy-3">
+          <div class="col-md-6">
+            <label for="cc-name" class="form-label">Name on card</label>
+            <input
+              [class.is-invalid]="nameCard?.invalid && nameCard?.touched"
+              type="text"
+              class="form-control"
+              formControlName="nameCard"
+            />
+            <small
+              *ngIf="nameCard?.invalid && nameCard?.touched"
+              class="text-muted"
+              >Full name as displayed on card</small
+            >
+          </div>
+
+          <div class="col-md-6">
+            <label for="cc-number" class="form-label">Credit card number</label>
+            <input
+              [class.is-invalid]="numberCard?.invalid && numberCard?.touched"
+              type="text"
+              class="form-control"
+              formControlName="numberCard"
+            />
+            <div *ngIf="numberCard?.invalid && numberCard?.touched">
+              <small *ngIf="numberCard?.errors?.['required']" class="text-muted"
+                >number as displayed on card</small
+              >
+
+              <small *ngIf="numberCard?.errors?.['pattern']" class="text-muted"
+                >number as 16 on card</small
+              >
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <label for="cc-expiration" class="form-label">Expiration</label>
+            <input
+              [class.is-invalid]="Expiration?.invalid && Expiration?.touched"
+              type="text"
+              class="form-control"
+              formControlName="Expiration"
+            />
+            <div *ngIf="Expiration?.invalid && Expiration?.touched">
+              <small
+                class="text-danger"
+                *ngIf="Expiration?.errors?.['required']"
+              >
+                Expiration is required</small
+              >
+              <small
+                class="text-danger"
+                *ngIf="Expiration?.errors?.['pattern']"
+              >
+                Expiration date</small
+              >
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <label for="cc-cvv" class="form-label">CVV</label>
+            <input
+              [class.is-invalid]="cvv?.invalid && cvv?.touched"
+              type="text"
+              class="form-control"
+              formControlName="cvv"
+            />
+            <div *ngIf="cvv?.invalid && cvv?.touched">
+              <small *ngIf="cvv?.errors?.['required']">please enter cvv</small>
+              <small *ngIf="cvv?.errors?.['pattern']"
+                >please enter 3 number cvv</small
+              >
+            </div>
+          </div>
+        </div>
+
+        <hr class="my-4" />
+
+        <button
+          class="w-50 btn offset-3 btn-primary btn-lg"
+          [class.disabled]="!checkoutForm.valid"
+          (click)="showMessage()"
+        >
+          Continue to checkout
+        </button>
+      </form>
+    </div>
+  </div>
+</main>
+<div>
+  <div id="myModal" class="modal" [class.d-block]="isCheckOut">
+    <div class="modal-content">
+      <span class="close" (click)="showMessage()">&times;</span>
+      Congratulations Your Orders Have Been Submitted
+      <span class="loader"></span>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,107 @@
+<div
+  class="d-flex flex-column justify-content-between"
+  style="min-height: 100vh"
+>
+  <header>
+    <app-navbar></app-navbar>
+  </header>
+
+  <main>
+    <div class="d-flex flex-column">
+      <div id="cover" class="row justify-content-center align-items-center">
+        <h1 class="text-center text-white fw-bold">Cart</h1>
+      </div>
+    </div>
+    <div *ngIf="errorMsg || !productsList" class="text-center my-5 py-5">
+      <h1>sorry no items found error is {{ errorMsg }}</h1>
+    </div>
+
+    <div class="parent container my-5">
+      <div class="row">
+        <table class="col-12 col-md-8 align-items-center border">
+          <thead class="text-center">
+            <tr>
+              <th scope="col">IMAGE</th>
+              <th scope="col">PRODUCT</th>
+              <th scope="col">PRICE</th>
+              <th scope="col">QUANTITY</th>
+              <th scope="col">TOTAL</th>
+            </tr>
+          </thead>
+          <tbody class="text-center" style="vertical-align: middle">
+            <tr *ngFor="let item of orderedProducts">
+              <img
+                src="assets/imgs2/{{ item['id'] }}.jpg"
+                alt="product"
+                width="100px"
+                class="product"
+                (click)="deleteProductFromCart(item)"
+                title="DELETE ITEM"
+              />
+
+              <td scope="" class="col-3 text-wrap text-center">
+                {{ item["title"].slice(0, 20) }}
+              </td>
+              <td scope="">{{ item["price"] | currency }}</td>
+              <td scope="col">
+                <button
+                  (click)="desIncrement(item.id)"
+                  style="background-color: #e6e6e6"
+                  class="btn"
+                >
+                  -
+                </button>
+                <span class="px-3">{{ item["count"] }}</span>
+                <button
+                  (click)="increment(item.id)"
+                  style="background-color: #e6e6e6"
+                  class="btn"
+                >
+                  +
+                </button>
+              </td>
+              <td class="col">
+                $ {{ item["price"] * item["count"] | number: ".2" }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div
+          class="col-12 col-md-4 my-3 my-md-0 d-md-flex flex-column justify-content-center"
+        >
+          <div class="border border-2 p-2">
+            <h3 class="fw-bold">Cart Total</h3>
+            <hr />
+            <div class="row">
+              <h6 class="col-6 fw-bold">Subtotal</h6>
+              <span class="col-6 text-end">${{ total | number: ".2" }} </span>
+            </div>
+            <hr />
+
+            <div class="row">
+              <h6 class="col-6 fw-bold">Shipping</h6>
+              <span class="col-6 text-end">00$</span>
+            </div>
+            <hr />
+            <div class="row">
+              <h6 class="col-6 fw-bold">Total</h6>
+              <span class="col-6 text-end">{{ total | number: ".2" }}$</span>
+            </div>
+            <hr />
+            <div class="row justify-content-center">
+              <button
+                class="btn orange w-75 text-center"
+                routerLink="/cart/checkout"
+              >
+                checkout
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <app-footer></app-footer>
+</div>

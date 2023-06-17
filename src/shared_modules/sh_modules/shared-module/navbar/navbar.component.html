@@ -1,0 +1,262 @@
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <div class="d-block d-lg-none">
+      <a
+        routerLink="/wishlist/items"
+        routerLinkActive="bg-shops"
+        class="btn shops"
+        ><i class="fa fa-heart-o px-2"> &nbsp;{{ wishlistCount }}</i></a
+      >
+
+      <a routerLink="/cart/orders" routerLinkActive="bg-shops" class="btn shops"
+        ><i class="fa fa-shopping-cart fa-check px-2">
+          &nbsp;{{ cartCount }}</i
+        ></a
+      >
+    </div>
+    <div class="fw-bold">
+      <a class="navbar-brand" routerLink="/home/overview">
+        <span class="iti-font-color-orange">Modern</span> Fashion
+      </a>
+    </div>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fa fa-bars text-white"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav align-items-end">
+        <li class="nav-item">
+          <a
+            class="nav-link fw-bold"
+            routerLink="/home/overview"
+            routerLinkActive="iti-font-color-orange"
+            >HOME</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link fw-bold"
+            routerLink="/shop/shop-list"
+            routerLinkActive="iti-font-color-orange"
+            >SHOP</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link fw-bold"
+            routerLink="/about/about-us"
+            routerLinkActive="iti-font-color-orange"
+            >ABOUT US</a
+          >
+        </li>
+
+        <a class="d-block d-lg-none text-decoration-none"
+          ><i *ngIf="token; then log; else notLog"></i
+        ></a>
+        <div class="form-check form-switch mx-2 d-block d-lg-none">
+          <label
+            class="form-check-label text-white"
+            for="flexSwitchCheckDefault"
+            >Dark Mode</label
+          >
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="flexSwitchCheckDefault"
+            onclick="changeTheme()"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="form-check form-switch mx-2 d-none d-lg-block">
+      <label class="form-check-label text-white" for="flexSwitchCheckDefault"
+        >Dark Mode</label
+      >
+      <input
+        class="form-check-input"
+        type="checkbox"
+        id="flexSwitchCheckDefault"
+        onclick="changeTheme()"
+      />
+    </div>
+    <div class="d-none d-lg-block">
+      <a
+        routerLink="/wishlist/items"
+        routerLinkActive="bg-shops"
+        class="btn shops"
+        ><i class="fa fa-heart-o px-2"> &nbsp;{{ wishlistCount }}</i></a
+      >
+
+      <a routerLink="/cart/orders" routerLinkActive="bg-shops" class="btn shops"
+        ><i class="fa fa-shopping-cart fa-check px-2">
+          &nbsp;{{ cartCount }}</i
+        ></a
+      >
+    </div>
+
+    <a class="d-none d-lg-block text-decoration-none"
+      ><i *ngIf="token; then log; else notLog"></i
+    ></a>
+  </div>
+</nav>
+
+<!-- ---------------------need------------------------- -->
+<ng-template #notLog>
+  <div class="dropdown">
+    <button
+      class="btn bg-shops text-white mx-2 dropdown-toggle"
+      type="button"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+      login
+    </button>
+    <ul
+      style="background-color: rgb(0, 0, 0)"
+      class="dropdown-menu dropdown-menu border-0 w-25"
+    >
+      <li>
+        <a
+          class="dropdown-item"
+          style="background-color: black"
+          routerLink="/authentication/login"
+          >log in</a
+        >
+      </li>
+      <li>
+        <a
+          class="dropdown-item"
+          style="background-color: black"
+          routerLink="/authentication/register"
+          >register</a
+        >
+      </li>
+    </ul>
+  </div>
+</ng-template>
+<ng-template #log>
+  <div
+    class="dropdown"
+    style="display: flex; flex-direction: column; align-items: end"
+  >
+    <button
+      class="btn bg-shops p-1 border-0 mx-2 dropdown-toggle"
+      type="button"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+      <span class="text-white">{{ userName }}</span>
+    </button>
+
+    <ul
+      style="background-color: rgb(0, 0, 0)"
+      class="dropdown-menu dropdown-menu border-0 w-25"
+    >
+      <li>
+        <a
+          (click)="logOut()"
+          class="nav-link fa fa-sign-out mx-3 fs-5"
+          routerLink="/authentication/login"
+        >
+          Logout</a
+        >
+      </li>
+    </ul>
+  </div>
+</ng-template>
+<!-- ---------------------------------------------- -->
+
+<!-- <nav class="navbar navbar-expand-sm py-1 d">
+  <div class="container-fluid">
+    <div class="d-block d-sm-none">
+      <a routerLink="/wishlist" class="btn">
+        <i class="fa-regular fa-heart px-2"></i>
+        {{ wishlistCount }}
+      </a>
+
+      <a routerLink="/cart/orders" class="btn bg-danger text-white"
+        ><i class="fa-solid fa-bag-shopping px-2"> &nbsp;{{ cartCount }}</i></a
+      >
+    </div>
+
+    <button
+      class="navbar-toggler bg-secondary"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#collapsibleNavbar"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="col-3 fw-bold">
+      <a class="navbar-brand" routerLink="/home/overview">
+        TINY <span class="iti-font-color-orange">KOSHK</span>
+      </a>
+    </div>
+
+    <div
+      class="collapse navbar-collapse d-flex offset-2"
+      id="collapsibleNavbar"
+    >
+      <ul class="navbar-nav align-items-baseline">
+        <li class="nav-item">
+          <a
+            class="nav-link fw-bold"
+            routerLink="/home/overview"
+            routerLinkActive="iti-font-color-orange"
+            >HOME</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link fw-bold"
+            routerLink="/shop/shop-list"
+            routerLinkActive="iti-font-color-orange"
+            >SHOP</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link fw-bold"
+            routerLink="/about/about-us"
+            routerLinkActive="iti-font-color-orange"
+            >ABOUT US</a
+          >
+        </li>
+      </ul>
+    </div>
+
+    <div class="form-check form-switch mx-2">
+      <label class="form-check-label text-white" for="flexSwitchCheckDefault"
+        >Dark Mode</label
+      >
+      <input
+        class="form-check-input"
+        type="checkbox"
+        id="flexSwitchCheckDefault"
+        onclick="changeTheme()"
+      />
+    </div>
+    <div class="d-none d-sm-block">
+      <a
+        routerLink="/wishlist/items"
+        routerLinkActive="bg-shops"
+        class="btn shops"
+        ><i class="fa fa-heart-o px-2"> &nbsp;{{ wishlistCount }}</i></a
+      >
+
+      <a routerLink="/cart/orders" routerLinkActive="bg-shops" class="btn shops"
+        ><i class="fa fa-shopping-cart fa-check px-2">
+          &nbsp;{{ cartCount }}</i
+        ></a
+      >
+    </div>
+  </div>
+</nav> -->

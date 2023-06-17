@@ -1,0 +1,83 @@
+<div
+  style="min-height: 100vh"
+  class="d-flex flex-column justify-content-between"
+>
+  <header class="mb-5">
+    <app-navbar></app-navbar>
+  </header>
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="spinner-border" role="status" *ngIf="!product">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid container mb-5">
+    <div class="row justify-content-center">
+      <div class="d-flex col-12 col-lg-6">
+        <div class="col-2 me-sm-2">
+          <img
+            src="assets/imgs2/{{2}}.jpg"
+            alt=""
+            class="img-fluid my-2 mt-0"
+            style="height: 100px"
+            (click)="changeImg(2)"
+          />
+          <img
+            src="assets/imgs2/{{3}}.jpg"
+            alt=""
+            class="img-fluid my-2"
+            style="height: 100px"
+            (click)="changeImg(3)"
+          />
+          <img
+            src="assets/imgs2/{{5}}.jpg"
+            alt=""
+            class="img-fluid my-2"
+            style="height: 100px"
+            (click)="changeImg(5)"
+          />
+        </div>
+        <div class="col-8" style="height: 600px">
+          <img
+            src="assets/imgs2/{{ img }}.jpg"
+            alt=""
+            class="img-fluid"
+            style="height: 100%"
+            id="mainImg"
+          />
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <h2>{{ product.title }}</h2>
+        <h6 class="text-secondary fw-bolder" style="font-size: 24px">
+          {{ product.price | currency }}
+        </h6>
+        <p class="py-3">
+          {{ product.description }}
+        </p>
+        <hr />
+
+        <button class="btn orange w-25" (click)="addToCart(product)">
+          Add To Cart
+        </button>
+        <hr />
+        <div class="d-flex flex-column">
+          <p>Product Code : <span class="px-4">FBB212412B</span></p>
+          <p>Availability : <span class="px-4">Available</span></p>
+          <p>
+            Type : <span class="px-4">{{ product.category }}</span>
+          </p>
+          <p>
+            Shipping :
+            <span class="px-4">01 Day shipping.(free pickup next day)</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>

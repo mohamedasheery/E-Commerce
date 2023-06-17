@@ -1,0 +1,16 @@
+footer {
+  background-color: black;
+
+  a {
+    color: white;
+    border: 0;
+
+    i {
+      font-size: 20px;
+    }
+
+    &:hover {
+      color: #F05454;
+    }
+  }
+}

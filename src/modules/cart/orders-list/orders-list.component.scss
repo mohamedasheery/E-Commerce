@@ -1,0 +1,36 @@
+#cover {
+  background-image: url('../../../assets/images/xbanner-08.jpg.pagespeed.ic.DRRTVgFQa3.webp');
+  height: 250px;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+
+}
+
+.orange {
+  background-color: rgb(0, 0, 0);
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 0px 3px 10px -5px rgb(94, 94, 94) !important;
+
+  &:hover {
+    background-color: #E65540;
+    color: whitesmoke;
+  }
+}
+
+tr {
+  border-width: 2px;
+  border-radius: 10px;
+
+}
+
+.product {
+  &:hover {
+    opacity: .7;
+  }
+}

@@ -1,0 +1,129 @@
+<div
+  style="min-height: 100vh"
+  class="d-flex flex-column justify-content-between"
+  *ngIf="productList || httpError"
+>
+  <header class="container-fluid p-0 mb-5">
+    <app-navbar></app-navbar>
+  </header>
+
+  <main>
+    <div class="container-fluid px-3">
+      <div class="row justify-content-center">
+        <aside class="col-6 col-md-3 col-lg-2">
+          <ul class="list-group">
+            <p class="fw-bold">Categories</p>
+            <li class="list-group-item p-0 border-0">
+              <button
+                class="btn orange-btn border-0 w-100 text-start fw-bold"
+                (click)="getAllProducts()"
+              >
+                All
+              </button>
+            </li>
+            <li
+              class="list-group-item my-2 p-0 border-0"
+              *ngFor="let item of categoriesName"
+            >
+              <button
+                class="text-decoration-none btn orange-btn w-100 text-start"
+                role="button"
+                (click)="getProductsByCategory(item)"
+              >
+                {{ item.charAt(0).toUpperCase() + item.slice(1).toLowerCase() }}
+              </button>
+            </li>
+          </ul>
+        </aside>
+
+        <div
+          class="row justify-content-around justify-content-md-center col-6 col-md-9"
+        >
+          <div *ngIf="httpError">
+            <h1>Sorry No Items Found Check YOUR INTERNET</h1>
+          </div>
+
+          <div
+            class="col-md-6 col-lg-3 mb-5 p-0 mx-4 prBox"
+            *ngFor="let item of productList; let i = index"
+          >
+            <div
+              class="product-wrapper rounded-3 overflow-hidden position-relative mb-45 text-center"
+            >
+              <div class="product-img" style="height: 350px">
+                <a routerLink="/shop/shop-list/details/{{ item.id }}">
+                  <img
+                    src="assets/imgs2/{{ item.id }}.jpg"
+                    alt=""
+                    width="100%"
+                    class="opacity-75"
+                    title="show details"
+                  />
+                </a>
+
+                <span
+                  id="rightSpan"
+                  class="text-center"
+                  (click)="addProductToWishList(item)"
+                >
+                  <i class="fa fa-heart"></i>
+                </span>
+                <button
+                  class="btn btn-primary product-action bg-danger p-2 w-75 m-auto border-0"
+                  (click)="addProductToCart(item)"
+                >
+                  Add To Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <app-footer></app-footer>
+</div>
+
+<div
+  class="d-flex justify-content-center align-content-center align-items-center vh-100"
+  style="background-color: #ececec"
+  *ngIf="!productList && !httpError"
+>
+  <figure class="ln lo lp lq gx kh gl gm paragraph-image">
+    <div class="gl gm oq">
+      <picture>
+        <source
+          data-testid="og"
+          srcset="
+            https://miro.medium.com/max/640/0*KLZrzdGXZkD7cr-3.gif   640w,
+            https://miro.medium.com/max/720/0*KLZrzdGXZkD7cr-3.gif   720w,
+            https://miro.medium.com/max/750/0*KLZrzdGXZkD7cr-3.gif   750w,
+            https://miro.medium.com/max/786/0*KLZrzdGXZkD7cr-3.gif   786w,
+            https://miro.medium.com/max/828/0*KLZrzdGXZkD7cr-3.gif   828w,
+            https://miro.medium.com/max/1100/0*KLZrzdGXZkD7cr-3.gif 1100w,
+            https://miro.medium.com/max/642/0*KLZrzdGXZkD7cr-3.gif   642w
+          "
+          sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw,
+          (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw,
+          (min-resolution: 3dppx) and (max-width: 700px) 67vw,
+          (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw,
+          (min-resolution: 2.5dppx) and (max-width: 700px) 80vw,
+          (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw,
+          (min-resolution: 2dppx) and (max-width: 700px) 100vw,
+          (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw,
+          321px"
+        />
+        <img
+          alt=""
+          class="ce km kn c rounded-circle"
+          width="100%"
+          height="100%"
+          loading="lazy"
+          role="presentation"
+          src="../../assets/1.jpg"
+        />
+      </picture>
+    </div>
+  </figure>
+</div>

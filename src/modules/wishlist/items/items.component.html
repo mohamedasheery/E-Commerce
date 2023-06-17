@@ -1,0 +1,71 @@
+<div
+  class="d-flex flex-column justify-content-between"
+  style="min-height: 100vh"
+>
+  <header>
+    <app-navbar></app-navbar>
+  </header>
+
+  <main>
+    <div class="d-flex flex-column" id="cover">
+      <div id="cover" class="row justify-content-center align-items-center">
+        <h1 class="text-center text-white fw-bold">Wishlist</h1>
+      </div>
+    </div>
+    <!-- <div *ngIf=" productList" class="text-center my-5 py-5">
+    <h1>sorry no items found  </h1>
+  </div> -->
+
+    <div class="parent container my-5">
+      <div class="row">
+        <table
+          class="col-12 col-md-12 align-items-center border border-opacity-25 border-dark"
+        >
+          <thead class="text-center">
+            <tr>
+              <th scope="col">IMAGE</th>
+              <th scope="col">PRODUCT</th>
+              <th scope="col">PRICE</th>
+              <th scope="col">Add To Cart</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody class="text-center" style="vertical-align: middle">
+            <tr *ngFor="let item of productList">
+              <img
+                src="assets/imgs2/{{ item['id'] }}.jpg"
+                alt="product"
+                width="100px"
+                class="product"
+                (click)="deleteFromWishList(item)"
+              />
+
+              <td scope="" class="col-3 text-wrap text-center">
+                {{ item["title"].slice(0, 20) }}
+              </td>
+              <td scope="">{{ item["price"] | currency }}</td>
+              <td scope="col">
+                <button
+                  (click)="addToCart(item)"
+                  class="btn btn-dark text-white"
+                >
+                  <i class="fs-6 fa fa-solid fa-cart-plus"></i>
+                </button>
+              </td>
+              <td class="col">
+                <button
+                  (click)="deleteFromWishList(item)"
+                  class="btn btn-danger"
+                >
+                  <i class="fs-5 fa fa-sharp fa-solid fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <app-footer></app-footer>
+</div>

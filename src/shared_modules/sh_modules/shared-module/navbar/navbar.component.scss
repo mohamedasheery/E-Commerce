@@ -1,0 +1,46 @@
+$orange : #E65540;
+
+.iti-btn-color {
+  border-color: $orange !important;
+}
+
+nav {
+  background-color: black !important;
+
+
+  a {
+    color: white;
+  }
+}
+
+.iti-font-color-orange {
+  color: $orange !important;
+}
+
+.shops {
+  padding: 0;
+  color: white !important;
+
+  &:hover {
+    background-color: $orange;
+  }
+}
+
+.bg-shops {
+  background-color: $orange;
+}
+
+.form-check-input:checked {
+  background-color: $orange;
+  border-color: $orange;
+
+}
+
+
+.dropdown-menu[data-bs-popper] {
+  left: -90px;
+}
+
+.dropdown-toggle::after {
+  color: white !important;
+}
